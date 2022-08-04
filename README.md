@@ -3,7 +3,7 @@
 <h1>Getting start: </h1>
 
 1. Download repository
-2. In python3 process write:
+2. <h5>In python3 process write:</h5>
 
     from bot import bot_server
 
@@ -11,5 +11,5 @@
 4. In python3 process write:
 
     bot_server('TOKEN')
-    
+
 5. Open bot in your Telegram account. Bot is active.
