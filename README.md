@@ -3,7 +3,7 @@
 
 <h1> Getting started: </h1>
 
-1. Download repository
+1. Download repository and telebot module (https://pypi.org/project/pyTelegramBotAPI/)
 2. In python3 process write:
 <pre><code> import expiration_bot as tbot </code></pre>
 

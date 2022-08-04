@@ -50,7 +50,7 @@ def bot_server(token):
         date_delta = date - datetime.datetime.today()  # days before expire
         # datetime -> int (seconds)
         timer = date_delta.days * 24 * 60 + date_delta.seconds
-        await bot.send_message(user, f'Notification for {product} seted on {date}.')
+        await bot.send_message(user, f'The notification for {product} is set for {date}.')
         await asyncio.sleep(timer)
         await bot.send_message(user, f"Don't eat {product}!")  # beep!
 
