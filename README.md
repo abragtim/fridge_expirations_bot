@@ -3,8 +3,8 @@
 <h1>Getting start: </h1>
 
 1. Download repository
-<h5>In python3 process write:</h5>
-
+2. In python3 process
+write:
     from bot import bot_server
 
 3. Get TOKEN from BotFather (https://core.telegram.org/bots)
