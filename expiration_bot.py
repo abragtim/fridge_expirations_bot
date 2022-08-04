@@ -56,9 +56,3 @@ def bot_server(token):
 
 
     asyncio.run(bot.polling())  # bot activating
-    
-
-if __name__ == '__main__':
-    bot_server('5158749767:AAFSWeTIXiyZku20Ffh8X7jGcg9qHgepetU')
-    
-    
