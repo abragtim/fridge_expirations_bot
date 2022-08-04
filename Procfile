@@ -1,1 +1,1 @@
-python3 expiration_bot.py
+bot: python3 bot.py
