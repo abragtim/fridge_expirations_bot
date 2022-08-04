@@ -20,7 +20,6 @@ def bot_server(token):
     async def set_timer(message):
         ''' Handle setting. '''
         args = message.text.split()
-        print(args)
         if len(args) > 1:
             user = message.chat.id  # get's tg secured chat's id with user
             await expiration_timer(args[0], args[1], user)

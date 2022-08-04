@@ -1,13 +1,14 @@
-# Telegram bot, which notify expiration dates for your products.
+# Telegram expiration bot
+<h2> Bot tells you in Telegram when your product has expired </h2>
 
-<h1>Getting start: </h1>
+<h1>Getting started: </h1>
 
 1. Download repository
 2. In python3 process write:
-<pre><code> from bot import bot_server </code></pre>
+<pre><code> import expiration_bot as tbot </code></pre>
 
 3. Get TOKEN from BotFather (https://core.telegram.org/bots)
 4. In python3 process write:
-<pre><code> bot_server('TOKEN') </code></pre>
+<pre><code> tbot.bot_server('TOKEN') </code></pre>
 
 5. Open bot in your Telegram account. Bot is active.
