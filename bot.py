@@ -10,6 +10,9 @@ def bot_server(token):
     bot = AsyncTeleBot(token)
     asyncio.run(bot.polling())
 
+# TODO: where to work with main func???
+bot_server('5158749767:AAFSWeTIXiyZku20Ffh8X7jGcg9qHgepetU')
+
 
 @bot.message_handler(commands=['help', 'start'])
 async def send_welcome(message):
@@ -51,8 +54,7 @@ async def expiration_timer(product: str, date: str, user):
     date_delta = date - datetime.datetime.today()  # days before expire
     # datetime -> int (seconds)
     timer = date_delta.days * 24 * 60 + date_delta.seconds
+    bot.send_message(user, f'Notification for {product} seted on {date}.')
     await asyncio.sleep(timer)
     await bot.send_message(user, f"Don't eat {product}!")  # beep!
 
-
-bot_server('5158749767:AAFSWeTIXiyZku20Ffh8X7jGcg9qHgepetU')
