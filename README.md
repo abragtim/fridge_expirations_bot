@@ -3,7 +3,7 @@
 <h1>Getting start: </h1>
 
 1. Download repository
-2. In python3 process
+2. In python3 process </br>
 write:
     from bot import bot_server
 
