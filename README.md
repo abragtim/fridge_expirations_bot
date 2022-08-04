@@ -4,8 +4,7 @@
 
 1. Download repository
 2. In python3 process write:
-
->> from bot import bot_server
+<pre><code>> from bot import bot_server</code></pre>
 
 3. Get TOKEN from BotFather (https://core.telegram.org/bots)
 4. In python3 process write:
