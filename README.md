@@ -1,7 +1,10 @@
-# fridge_expirations_bot
+# Telegram bot, which notify expiration dates for your products.
 
-Plans:
-1. /unset.
-2. Handle minus dates.
-3. More anwers for user from server.
-4. Bot's avatar
+<h1>Getting start: </h1>
+1. Download repository
+2. In python3 process write:
+    from bot import bot_server
+3. Get TOKEN from BotFather (https://core.telegram.org/bots)
+4. In python3 process write:
+    bot_server('TOKEN')
+5. Open bot in your Telegram account. Bot is active.
