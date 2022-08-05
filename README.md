@@ -1,6 +1,7 @@
 # Telegram expiration bot
 ## Bot tells you in Telegram when your product has expired
 Active bot: https://t.me/expiration_date_bot
+# There are notification problems! Working on it 🚜
 
 <h1> Getting started locally (your domestic bot🤖): </h1>
 
