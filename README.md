@@ -1,8 +1,8 @@
 # Telegram expiration bot
 ## Bot tells you in Telegram when your product has expired
-https://t.me/expiration_date_bot
+Active bot: https://t.me/expiration_date_bot
 
-<h1> Getting started: </h1>
+<h1> Getting started loccaly (your domestic bot🤖): </h1>
 
 1. Download repository and telebot module (https://pypi.org/project/pyTelegramBotAPI/)
 2. In python3 process write:
