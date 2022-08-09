@@ -1,13 +1,16 @@
-import asyncio
-import datetime
-import sqlite3
+import asyncio, datetime, sqlite3
+from logger import logger
 from threading import Thread
 from telebot.async_telebot import AsyncTeleBot
+from telebot import TeleBot
+from reconnection import reconnect
 
 
 def bot_server(token):
     ''' Main process. Activating bot '''
+
     bot = AsyncTeleBot(token)  # you can get token from BotFather
+
     # database activating
     db = sqlite3.connect('requests.db')
     cur = db.cursor()
@@ -15,10 +18,13 @@ def bot_server(token):
         # table doesn't exist
         cur.execute('''CREATE TABLE requests (user, product, date)''')
     except sqlite3.OperationalError:
-        # table exists
-        pass
+        # table exists, reconnect
+        requests = [request for request in cur.execute('''SELECT * FROM requests''')]
+        th = Thread(target=reconnect, args=(token, requests))
+        th.start()
     db.commit()
     #TODO: mb db.reconnect() method create
+
 
     @bot.message_handler(commands=['help', 'start'])
     async def send_welcome(message):
@@ -60,15 +66,15 @@ def bot_server(token):
         # adding values to database
         cur.execute('''INSERT INTO requests VALUES ('{}', '{}', '{}')'''.format(user, product, date))
         db.commit()
-
+        # TODO: logger need or not?
+        logger.info(f'User {user} notificate {product} on {date}.')
         await bot.send_message(user, f'Notification for {product} seted on {date}.')
         await asyncio.sleep(timer)
         await bot.send_message(user, f"Don't eat {product}!")  # beep!
         #TODO: delete from db values
 
 
-    asyncio.run(bot.polling())  # bot activating
-    #TODO: reconnection threading mb
+    asyncio.run(bot.infinity_polling())  # bot activating
 
     db.close()
 
