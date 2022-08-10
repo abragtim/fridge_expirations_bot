@@ -1,12 +1,27 @@
-import asyncio
-import datetime
+import asyncio, datetime, sqlite3
 from telebot.async_telebot import AsyncTeleBot
+from threading import Thread
 from logger import logger
+from reconnection import reconnect
 
 
 def bot_server(token):
     ''' Main process. Activating bot '''
     bot = AsyncTeleBot(token)  # you can get token from BotFather
+
+    # database activating
+    db = sqlite3.connect('requests.db')
+    cur = db.cursor()
+    try:
+        # table doesn't exist
+        cur.execute('''CREATE TABLE requests (user, product, date)''')
+    except sqlite3.OperationalError:
+        # table exists, reconnect
+        requests = [request for request in cur.execute('''SELECT * FROM requests''')]
+        th = Thread(target=asyncio.run, args=(reconnect(bot, requests),))
+        th.start()
+    db.commit()
+    #TODO: mb db.reconnect() method create
 
 
     @bot.message_handler(commands=['help', 'start'])
@@ -57,4 +72,6 @@ def bot_server(token):
             await bot.send_message(user, f"Don't eat {product}!")  # beep!
 
 
-    asyncio.run(bot.infinity_polling(timeout=None))  # bot activating
+    asyncio.run(bot.infinity_polling())  # bot activating
+
+bot_server('5445553488:AAHEdWMPG76Lx0E4Wp4hQ51aSpvauxA9K3w')
