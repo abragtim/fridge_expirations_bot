@@ -27,7 +27,6 @@ def bot_server(token):
             await bot.reply_to(message, 'Usage: <product> <expiration date>')
 
 
-
     async def expiration_timer(product: str, date: str, user):
         ''' Seting an expiration timer by user for product on current date. '''
         logger.info(f"User {user} request set {date} for {product}.")
@@ -48,13 +47,14 @@ def bot_server(token):
                 user,
                 'Wrong year/month/day format. Correct: D.M.Y (exapmle: 3.1.2022)')
             logger.error(f'Wrong year/month/day format: user = {user}, product = {product}, date = {date}')
+        # timedelta -> int (seconds)
+        timer = (date - datetime.datetime.today()).total_seconds()
+        if timer > 0:
+            await bot.send_message(user, f'The notification for {product} is set for {date}.')
+            await asyncio.sleep(timer)
+            await bot.send_message(user, f"Last day for {product} before expiration!")  # beep!
+        else:
+            await bot.send_message(user, f"Don't eat {product}!")  # beep!
 
-        date_delta = date - datetime.datetime.today()  # days before expire
-        # datetime -> int (seconds)
-        timer = date_delta.days * 24 * 60 + date_delta.seconds
-        await bot.send_message(user, f'The notification for {product} is set for {date}.')
-        await asyncio.sleep(timer)
-        await bot.send_message(user, f"Don't eat {product}!")  # beep!
 
-
-    asyncio.run(bot.infinity_polling())  # bot activating
+    asyncio.run(bot.infinity_polling(timeout=None))  # bot activating
